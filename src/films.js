@@ -37,7 +37,10 @@ function orderAlphabetically(array) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-  array = array.sort((a, b) => {
+
+  const result = Array.from(array)
+
+  result.sort((a, b) => {
     if (a.year < b.year) {
       return -1;
     } else if (a.year > b.year) {
@@ -52,8 +55,6 @@ function orderByYear(array) {
       }
     }
   });
-
-  const result = Array.from(array)
 
   console.log("EXERCICE 5 ->", result);
   return result;  
@@ -102,8 +103,34 @@ function moviesAverageByCategory(array, categoria) {
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(array) {
 
+  const result = JSON.parse(JSON.stringify(array))
+
+  result.map(times => {
+  
+    let tiempo = times.duration;
+
+    if (!tiempo.includes('h')) {
+   // if (tiempo.indexOf('h') == -1) {
+      times.duration = parseFloat(tiempo)
+
+    } else {
+      let horas = parseFloat(tiempo.substring(0,1))
+      let minutos = 0;
+
+      if (tiempo.includes('m')) {
+    // if (tiempo.indexOf('m') != -1) {
+        minutos = parseFloat(tiempo.substring(2))
+      }
+      horas *= 60;
+      times.duration = horas + minutos;
+    }
+    return times
+  })
+
+  console.log("EXERCICE 7 ->", result);
+  return result; 
 }
 
 // Exercise 8: Get the best film of a year
