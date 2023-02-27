@@ -112,7 +112,6 @@ function hoursToMinutes(array) {
     let tiempo = times.duration;
 
     if (!tiempo.includes('h')) {
-   // if (tiempo.indexOf('h') == -1) {
       times.duration = parseFloat(tiempo)
 
     } else {
@@ -120,7 +119,6 @@ function hoursToMinutes(array) {
       let minutos = 0;
 
       if (tiempo.includes('m')) {
-    // if (tiempo.indexOf('m') != -1) {
         minutos = parseFloat(tiempo.substring(2))
       }
       horas *= 60;
@@ -134,8 +132,16 @@ function hoursToMinutes(array) {
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array, year) {
+
+  let result = Array.from(array);
+   
+  result.filter(years => years.year == year);
+  result.sort((a, b) => a.score - b.score).reverse();
+  result.splice(1, result.length-1);
+
+  console.log("EXERCICE 8 ->", result);
+  return result;
 }
 
 
